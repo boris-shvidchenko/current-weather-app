@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-    .main-input {
-        @apply border border-black
+/* @layer components {
+    .input {
+        @apply 
     }
-}
+} */
