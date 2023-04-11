@@ -3,8 +3,14 @@ import './App.css';
 
 export default function App() {
 
-  // State holds location to search
+  // State holds location to search, current data, astronomy data
   const [location, setLocation] = useState('');
+  const [currentWeather, setCurrentWeather] = useState();
+  const [astronomyData, setAstronomyData] = useState();
+
+  // Testing
+  console.log(currentWeather);
+  console.log(astronomyData);
 
   // Updates location state
   function updateLocation(e){
@@ -12,11 +18,14 @@ export default function App() {
   }
 
   // Performs weather search based on location
-  function performSearch() {
+  async function performSearch() {
     if (location !== '') {
-      fetch(`http://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_API_KEY}&q=${location}`)
+      await fetch(`http://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_API_KEY}&q=${location}`)
         .then(res => res.json())
-        .then(data => console.log(data));
+        .then(data => setCurrentWeather(data))
+      await fetch(`http://api.weatherapi.com/v1/astronomy.json?key=${process.env.REACT_APP_API_KEY}&q=${location}`)
+        .then(res => res.json())
+        .then(data => setAstronomyData(data))
     }
   }
 
