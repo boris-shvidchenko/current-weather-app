@@ -1,39 +1,42 @@
-import { useState } from 'react';
 import './App.css';
+// Hooks
+import { createContext, useReducer } from 'react';
+// Components
+import Search from './components/Search';
+
+// Context 
+export const Context = createContext();
 
 export default function App() {
 
-  // State holds location to search, current data, astronomy data
-  const [location, setLocation] = useState('');
-  const [currentWeather, setCurrentWeather] = useState();
-  const [astronomyData, setAstronomyData] = useState();
-
-  // Testing
-  console.log(currentWeather);
-  console.log(astronomyData);
-
-  // Updates location state
-  function updateLocation(e){
-    setLocation(e.target.value);
+  // State
+  const initialState = {
+    location: '',
+    currentWeather: null,
+    astronomyData: null
   }
 
-  // Performs weather search based on location
-  async function performSearch() {
-    if (location !== '') {
-      await fetch(`http://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_API_KEY}&q=${location}`)
-        .then(res => res.json())
-        .then(data => setCurrentWeather(data))
-      await fetch(`http://api.weatherapi.com/v1/astronomy.json?key=${process.env.REACT_APP_API_KEY}&q=${location}`)
-        .then(res => res.json())
-        .then(data => setAstronomyData(data))
+  // Reducer
+  const [state, dispatch] = useReducer(reducer, initialState);
+  
+  function reducer(state, action) {
+    switch (action.type) {
+      case 'setLocation':
+        return {...state, location: action.location}
+      case 'setCurrentWeather':
+        return {...state, currentWeather: action.currentWeather}
+      case 'setAstronomyData':
+        return {...state, astronomyData: action.astronomyData}
     }
   }
 
+  // Test
+  console.log(state);
+  
   return (
-    <div>
-      <input type="text" className='main-input' value={location} onChange={(e) => updateLocation(e)}/>
-      <button onClick={(e) => performSearch(e)}>Click</button>
-    </div>
+    <Context.Provider value={{state, dispatch}}>
+      <Search />
+    </Context.Provider>
   );
 }
 
