@@ -27,9 +27,9 @@ export default function Search() {
                 .then(data => dispatch({type: 'setAstronomyData', astronomyData: data}))
             }
             // Remove text from input bar
-            dispatch({ type: 'setLocation', location: ''});
+            await dispatch({ type: 'setLocation', location: ''});
             // Updates showResults state to true, to move component up into the UI
-            dispatch({ type: 'setShowResults', showResults: true});
+            await dispatch({ type: 'setShowResults', showResults: true});
     }
 
     return (
