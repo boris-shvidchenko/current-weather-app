@@ -9,6 +9,6 @@ export default function Results() {
     const { state, dispatch } = useContext(Context);
 
     return (
-        <div className={`w-full h-auto bg-red-400 ${!state.showResults && 'fixed -bottom-10'}`}>results go here</div>
+        <div className={`duration-700 ease-in-out w-full h-auto pt-3 pb-96 px-10 ${!state.showResults && 'translate-y-[2000px]'}`}></div>
     )
 }

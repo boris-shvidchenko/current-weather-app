@@ -39,8 +39,10 @@ export default function App() {
   
   return (
     <Context.Provider value={{state, dispatch}}>
-      <Search />
-      <Results />
+      <main className='overflow-hidden'>
+        <Search />
+        <Results />
+      </main>
     </Context.Provider>
   );
 }
