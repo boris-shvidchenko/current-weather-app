@@ -3,6 +3,7 @@ import './App.css';
 import { createContext, useReducer } from 'react';
 // Components
 import Search from './components/Search';
+import Results from './components/Results';
 
 // Context 
 export const Context = createContext();
@@ -13,7 +14,8 @@ export default function App() {
   const initialState = {
     location: '',
     currentWeather: null,
-    astronomyData: null
+    astronomyData: null,
+    showResults: false,
   }
 
   // Reducer
@@ -27,6 +29,8 @@ export default function App() {
         return {...state, currentWeather: action.currentWeather}
       case 'setAstronomyData':
         return {...state, astronomyData: action.astronomyData}
+      case 'setShowResults':
+        return {...state, showResults: action.showResults}
     }
   }
 
@@ -36,6 +40,7 @@ export default function App() {
   return (
     <Context.Provider value={{state, dispatch}}>
       <Search />
+      <Results />
     </Context.Provider>
   );
 }
