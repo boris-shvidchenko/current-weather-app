@@ -34,7 +34,7 @@ export default function Search() {
             } else {
                 console.log('An error occured');
                 dispatch ({type: 'setError', error: true});
-            } 
+            }  
         }
     }
 
