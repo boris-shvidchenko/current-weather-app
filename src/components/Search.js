@@ -19,17 +19,23 @@ export default function Search() {
     async function performSearch(e) {
         e.preventDefault();
         if (state.location !== '') {
-            await fetch(`http://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_API_KEY}&q=${state.location}`)
-                .then(res => res.json())
-                .then(data => dispatch({type: 'setCurrentWeather', currentWeather: data}))
-            await fetch(`http://api.weatherapi.com/v1/astronomy.json?key=${process.env.REACT_APP_API_KEY}&q=${state.location}`)
-                .then(res => res.json())
-                .then(data => dispatch({type: 'setAstronomyData', astronomyData: data}))
-            }
-            // Remove text from input bar
-            await dispatch({ type: 'setLocation', location: ''});
-            // Updates showResults state to true, to move component up into the UI
-            await dispatch({ type: 'setShowResults', showResults: true});
+            const res1 = await fetch(`http://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_API_KEY}&q=${state.location}`);
+            const res2 = await fetch(`http://api.weatherapi.com/v1/astronomy.json?key=${process.env.REACT_APP_API_KEY}&q=${state.location}`)
+            // If the fetch response is outside of the range 200-299 (successful response, or .ok method is false), throw an error
+            if (res1.ok && res2.ok) {
+                const res1Data = await res1.json();
+                const res2Data = await res2.json();
+                await dispatch({type: 'setCurrentWeather', currentWeather: res1Data});
+                await dispatch({type: 'setAstronomyData', astronomyData: res2Data})
+                // Remove text from input bar, update showResults state to true (to move component up into the UI), and update error state to false
+                await dispatch({ type: 'setLocation', location: ''});
+                await dispatch({ type: 'setShowResults', showResults: true});
+                await dispatch ({type: 'setError', error: false});
+            } else {
+                console.log('An error occured');
+                dispatch ({type: 'setError', error: true});
+            } 
+        }
     }
 
     return (

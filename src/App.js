@@ -16,6 +16,7 @@ export default function App() {
     currentWeather: null,
     astronomyData: null,
     showResults: false,
+    error: false,
   }
 
   // Reducer
@@ -31,11 +32,13 @@ export default function App() {
         return {...state, astronomyData: action.astronomyData}
       case 'setShowResults':
         return {...state, showResults: action.showResults}
+      case 'setError':
+        return {...state, error: action.error}
     }
   }
 
   // Test
-  // console.log(state);
+  console.log(state);
   
   return (
     <Context.Provider value={{state, dispatch}}>
