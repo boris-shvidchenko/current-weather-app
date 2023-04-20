@@ -38,7 +38,7 @@ export default function App() {
   }
 
   // Test
-  console.log(state);
+  // console.log(state);
   
   return (
     <Context.Provider value={{state, dispatch}}>
