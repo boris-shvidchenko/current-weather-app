@@ -6,7 +6,7 @@ import { Context } from '../App';
 export default function Results() {
 
     // Use context
-    const { state, dispatch } = useContext(Context);
+    const { state } = useContext(Context);
 
     return (
         <div className={`duration-700 ease-in-out w-auto h-auto pt-3 pb-96 px-10 mt-10 mx-2 sm:mx-5 ${!state.showResults && 'translate-y-[2000px]'} flex flex-col`}>
