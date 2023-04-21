@@ -16,8 +16,8 @@ export default function Search() {
     async function performSearch(e) {
         e.preventDefault();
         if (state.location !== '') {
-            const res1 = await fetch(`http://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_API_KEY}&q=${state.location}`);
-            const res2 = await fetch(`http://api.weatherapi.com/v1/astronomy.json?key=${process.env.REACT_APP_API_KEY}&q=${state.location}`);
+            const res1 = await fetch(`https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_API_KEY}&q=${state.location}`);
+            const res2 = await fetch(`https://api.weatherapi.com/v1/astronomy.json?key=${process.env.REACT_APP_API_KEY}&q=${state.location}`);
             // If the fetch response is outside of the range 200-299 (successful response, or .ok method is false), throw an error
             if (res1.ok && res2.ok) {
                 const res1Data = await res1.json();
