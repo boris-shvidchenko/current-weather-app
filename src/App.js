@@ -1,7 +1,5 @@
 import './App.css';
-// Hooks
 import { createContext, useReducer } from 'react';
-// Components
 import Search from './components/Search';
 import Results from './components/Results';
 

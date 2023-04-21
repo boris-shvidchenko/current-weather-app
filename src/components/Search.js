@@ -1,9 +1,6 @@
-// Hooks
 import { useContext } from 'react';
-// Context
 import { Context } from '../App';
-// Icons
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
 export default function Search() {
 
@@ -20,13 +17,13 @@ export default function Search() {
         e.preventDefault();
         if (state.location !== '') {
             const res1 = await fetch(`http://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_API_KEY}&q=${state.location}`);
-            const res2 = await fetch(`http://api.weatherapi.com/v1/astronomy.json?key=${process.env.REACT_APP_API_KEY}&q=${state.location}`)
+            const res2 = await fetch(`http://api.weatherapi.com/v1/astronomy.json?key=${process.env.REACT_APP_API_KEY}&q=${state.location}`);
             // If the fetch response is outside of the range 200-299 (successful response, or .ok method is false), throw an error
             if (res1.ok && res2.ok) {
                 const res1Data = await res1.json();
                 const res2Data = await res2.json();
                 await dispatch({type: 'setCurrentWeather', currentWeather: res1Data});
-                await dispatch({type: 'setAstronomyData', astronomyData: res2Data})
+                await dispatch({type: 'setAstronomyData', astronomyData: res2Data});
                 // Remove text from input bar, update showResults state to true (to move component up into the UI), and update error state to false
                 await dispatch({ type: 'setLocation', location: ''});
                 await dispatch({ type: 'setShowResults', showResults: true});

@@ -1,1 +1,1 @@
-A weather app.
+A simple weather search app, primarily built to get familiar with the Weather API (https://www.weatherapi.com/). Data retrieval and manipulation were the primary focus of this build, and the UI was kept simple.

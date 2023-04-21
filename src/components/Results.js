@@ -1,6 +1,4 @@
-// Hooks
 import { useContext } from 'react';
-// Context
 import { Context } from '../App';
 
 export default function Results() {
@@ -10,7 +8,6 @@ export default function Results() {
 
     return (
         <div className={`${!state.showResults && 'translate-y-[2000px] hidden'} results-main`}>
-            
             {/* Location Info */}
             <section className='result-section'>
                 <h1 className='text-xl font-bold'>{state?.currentWeather?.location?.name}, {state?.currentWeather?.location?.region}</h1>
@@ -18,7 +15,6 @@ export default function Results() {
                 <h4>Local time: {state?.currentWeather?.location?.localtime}</h4>
                 <p className='text-sm mt-3 text-black/40'>Last updated: {state?.currentWeather?.current?.last_updated}</p>
             </section>
-
             {/* Current Weather */}
             <section className='result-section'>
                 <div className='sm:flex sm:space-x-3'>
@@ -42,7 +38,6 @@ export default function Results() {
                     <p>Wind direction: <span className='result-p'>{state?.currentWeather?.current?.wind_dir}</span></p>
                 </section>
             </section>
-            
             {/* Astronomy */}
             <section className='result-section'>
                 <p>Sunrise: <span className='result-p'>{state?.astronomyData?.astronomy?.astro?.sunrise}</span></p>
