@@ -6,8 +6,23 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-/* @layer components {
-    .input {
-        @apply 
+@layer components {
+    .search-main {
+        @apply duration-300 ease-in-out px-10
     }
-} */
+    .search-h1 {
+        @apply text-3xl flex-1 sm:flex-none relative left-2 font-semibold text-blue-800
+    }
+    .search-form {
+        @apply flex items-center space-x-2 border border-slate-600 py-2 px-4 rounded-3xl shadow-md drop-shadow-sm
+    }
+    .results-main {
+        @apply duration-700 ease-in-out w-auto h-auto pt-3 pb-96 px-10 mt-10 mx-2 sm:mx-5 flex flex-col
+    }
+    .result-section {
+        @apply overflow-hidden border-b-2 mb-3 pb-3 w-max font-semibold
+    }
+    .result-p {
+        @apply font-normal text-black/70
+    }
+}

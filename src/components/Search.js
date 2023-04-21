@@ -38,11 +38,14 @@ export default function Search() {
         }
     }
 
+    // Styles
+    const main = !state.showResults ? 'mt-48 sm:mt-80 w-auto sm:w-[500px] mx-4 sm:mx-auto space-y-3' : 'flex items-center justify-between space-x-5 my-4';
+
     return (
         <>
-            <main className={`${!state.showResults && 'mt-48 sm:mt-80 w-auto sm:w-[500px] mx-4 sm:mx-auto space-y-3'} ${state.showResults && 'flex items-center justify-between space-x-5 my-4'} duration-300 ease-in-out px-10`}>
-                <h1 className='text-3xl flex-1 sm:flex-none relative left-2 font-semibold text-blue-800'>Weather Now</h1>
-                <form onSubmit={(e) => performSearch(e)} className='flex items-center space-x-2 border border-slate-600 py-2 px-4 rounded-3xl shadow-md drop-shadow-sm'>
+            <main className={`${main} search-main`}>
+                <h1 className='search-h1'>Weather Now</h1>
+                <form onSubmit={(e) => performSearch(e)} className='search-form'>
                     <input type="text" className='w-full p-1 flex-1 outline-none' value={state.location} onChange={(e) => updateLocation(e)}/>
                     <MagnifyingGlassIcon className='w-6 h-6 cursor-pointer hover:text-blue-800' onClick={(e) => performSearch(e)} />
                 </form>

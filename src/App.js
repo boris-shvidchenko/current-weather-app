@@ -36,16 +36,11 @@ export default function App() {
         return {...state, error: action.error}
     }
   }
-
-  // Test
-  // console.log(state);
   
   return (
     <Context.Provider value={{state, dispatch}}>
-      <main className='overflow-hidden'>
         <Search />
         <Results />
-      </main>
     </Context.Provider>
   );
 }
