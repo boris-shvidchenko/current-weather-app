@@ -9,44 +9,46 @@ export default function Results() {
     const { state, dispatch } = useContext(Context);
 
     return (
-        <div className={`duration-700 ease-in-out w-auto h-auto pt-3 pb-96 px-10 mt-10 mx-2 sm:mx-5 ${!state.showResults && 'translate-y-[2000px]'} flex flex-col sm:flex-row sm:space-x-5 sm:justify-center`}>
+        <div className={`duration-700 ease-in-out w-auto h-auto pt-3 pb-96 px-10 mt-10 mx-2 sm:mx-5 ${!state.showResults && 'translate-y-[2000px]'} flex flex-col`}>
             
             {/* Location Info */}
-            <section className='border border-black/40 bg-blue-100 overflow-hidden'>
-                <h1>{state?.currentWeather?.location?.name}, {state?.currentWeather?.location?.region}</h1>
-                <h2>{state?.astronomyData?.location?.country}</h2>
+            <section className='overflow-hidden border-b-2 mb-3 pb-3'>
+                <h1 className='text-xl font-bold'>{state?.currentWeather?.location?.name}, {state?.currentWeather?.location?.region}</h1>
+                <h2 className='text-lg font-semibold text-black/70'>{state?.astronomyData?.location?.country}</h2>
                 <h4>Local time: {state?.currentWeather?.location?.localtime}</h4>
-                <p>Last updated: {state?.currentWeather?.current?.last_updated}</p>
+                <p className='text-sm mt-3 text-black/40'>Last updated: {state?.currentWeather?.current?.last_updated}</p>
             </section>
 
             {/* Current Weather */}
-            <section className='border border-black/40 bg-blue-100 overflow-hidden'>
-                <img src={state?.currentWeather?.current?.condition?.icon} alt='Current weather icon' />
+            <section className='overflow-hidden border-b-2 pb-3 mb-3'>
+                <div className='sm:flex sm:space-x-3'>
+                    <img src={state?.currentWeather?.current?.condition?.icon} alt='Current weather icon' className='w-32 h-32' />
+                    <section className='font-semibold sm:border-l-2 sm:pl-3'>
+                        <p>Currently: <span className='font-normal text-black-70'>{state?.currentWeather?.current?.condition?.text}</span></p>
+                        <p>Visibility: <span className='font-normal text-black-70'>{state?.currentWeather?.current?.vis_miles} miles/{state?.currentWeather?.current?.vis_km} km</span></p>
+                        <p>Cloud cover: <span className='font-normal text-black-70'>{state?.currentWeather?.current?.cloud}%</span></p>
+                        <p>Precipitation: <span className='font-normal text-black-70'>{state?.currentWeather?.current?.precip_in} in/{state?.currentWeather?.current?.precip_mm} mm</span></p>
+                        <p>Pressure: <span className='font-normal text-black-70'>{state?.currentWeathe?.current?.pressure_in} in/{state?.currentWeather?.current?.pressure_mm} mb</span></p>
+                    </section>
+                </div>
+            </section>
+            <section className='overflow-hidden font-semibold flex flex-col border-b-2 mb-3 pb-3'>
                 <section>
-                    <p>Currently: {state?.currentWeather?.current?.condition?.text}</p>
-                    <p>Visibility: {state?.currentWeather?.current?.vis_miles} miles/{state?.currentWeather?.current?.vis_km} km</p>
-                    <p>Cloud cover: {state?.currentWeather?.current?.cloud}%</p>
-                    <p>Precipitation: {state?.currentWeather?.current?.precip_in} in/{state?.currentWeather?.current?.precip_mm} mm</p>
-                    <p>Pressure: {state?.currentWeathe?.current?.pressure_in} in/{state?.currentWeather?.current?.pressure_mm} mb</p>
-                </section>
-                <section>
-                    <p>Temperature: {state?.currentWeather?.current?.temp_f} F/{state?.currentWeather?.current?.temp_c} C</p>
-                    <p>Feels like: {state?.currentWeather?.current?.feelslike_f} F/{state?.currentWeather?.current?.feelslike_c} C</p>
-                    <p>Humidity: {state?.currentWeather?.current?.humidity}%</p>
-                </section>
-                <section>
-                    <p>Wind: {state?.currentWeather?.current?.wind_mph} mph/{state?.currentWeather?.current?.wind_kph} kph</p>
-                    <p>Wind gusts up to: {state?.currentWeather?.current?.gust_mph} mph/{state?.currentWeather?.current?.gust_kph} kph</p>
-                    <p>Wind direction: {state?.currentWeather?.current?.wind_dir}</p>
+                    <p>Temperature: <span  className='font-normal text-black-70'>{state?.currentWeather?.current?.temp_f} F/{state?.currentWeather?.current?.temp_c} C</span></p>
+                    <p>Feels like: <span  className='font-normal text-black-70'>{state?.currentWeather?.current?.feelslike_f} F/{state?.currentWeather?.current?.feelslike_c} C</span></p>
+                    <p>Humidity: <span  className='font-normal text-black-70'>{state?.currentWeather?.current?.humidity}%</span></p>
+                    <p>Wind: <span  className='font-normal text-black-70'>{state?.currentWeather?.current?.wind_mph} mph/{state?.currentWeather?.current?.wind_kph} kph</span></p>
+                    <p>Wind gusts up to: <span  className='font-normal text-black-70'>{state?.currentWeather?.current?.gust_mph} mph/{state?.currentWeather?.current?.gust_kph} kph</span></p>
+                    <p>Wind direction: <span  className='font-normal text-black-70'>{state?.currentWeather?.current?.wind_dir}</span></p>
                 </section>
             </section>
             
             {/* Astronomy */}
-            <section className='border border-black/40 bg-blue-100 overflow-hidden'>
-                <p>Sunrise: {state?.astronomyData?.astronomy?.astro?.sunrise}</p>
-                <p>Sunset: {state?.astronomyData?.astronomy?.astro?.sunset}</p>
-                <p>Moonrise: {state?.astronomyData?.astronomy?.astro?.moonrise}</p>
-                <p>Moonset: {state?.astronomyData?.astronomy?.astro?.moonset}</p>
+            <section className='overflow-hidden font-semibold'>
+                <p>Sunrise: <span  className='font-normal text-black-70'>{state?.astronomyData?.astronomy?.astro?.sunrise}</span></p>
+                <p>Sunset: <span  className='font-normal text-black-70'>{state?.astronomyData?.astronomy?.astro?.sunset}</span></p>
+                <p>Moonrise: <span  className='font-normal text-black-70'>{state?.astronomyData?.astronomy?.astro?.moonrise}</span></p>
+                <p>Moonset: <span  className='font-normal text-black-70'>{state?.astronomyData?.astronomy?.astro?.moonset}</span></p>
             </section>
         </div>
     )
